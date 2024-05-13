@@ -1,49 +1,66 @@
-from flask import Flask
 from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 
-def connect_database():
-    info = {
-        "username": "alvar",
-        "password": "1234",
-        "cluster": "cluster0.bvyon6w.mongodb.net",
-        "database": "contaminacion"
-    }
+# def connect_database():
+#     info = {
+#         "username": "alvar",
+#         "password": "1234",
+#         "cluster": "cluster0.bvyon6w.mongodb.net",
+#         "database": "contaminacion"
+#     }
     
-    url = "mongodb+srv://{username}:{password}@{cluster}/{database}?retryWrites=true&w=majority".format(**info)
+#     url = "mongodb+srv://{username}:{password}@{cluster}/{database}?retryWrites=true&w=majority".format(**info)
     
-    client = MongoClient(url)
+#     client = MongoClient(url)
 
-    db = client[info["database"]]
+#     db = client[info["database"]]
 
-    return db
+#     return db
 
-def connect_databaseV2():
+def connect_databaseV2():  #Cambio de usuario si no estamos conectados
     #Conexion de la BD con Cristian GG
-    info = {
-        "username": "reifa",
-        "password": "rafa",
-        "cluster": "cluster0.bvyon6w.mongodb.net",
-        "database": "contaminacion"
-    }
+    uri = "mongodb+srv://reifa:rafa@contaminacion.4m05tim.mongodb.net/?retryWrites=true&w=majority&appName=contaminacion"
+    # Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    # Send a ping to confirm a successful connection
+    try:
+        client.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
+        return client["ContaminacionBCN"]
+    except Exception as e:
+        print(e)
+        return None
+
+
+connect_databaseV2()
+
+def get_all_database():
+    bd = connect_databaseV2()
     
-    url = "mongodb+srv://{username}:{password}@{cluster}/{database}?retryWrites=true&w=majority".format(**info)
+    colecciones = ["CalidadAire" , "Contaminantes" , "Estaciones"]
+    documents = []
     
-    # Conecta a MongoDB
-    client = MongoClient(url)
-
-    # Selecciona la base de datos
-    db = client[info["database"]]
+    for name_doc in colecciones:
+        print(f"Estas en la Coleccion {name_doc}")
+        coleccion = bd[name_doc]
+        for doc in coleccion.find():
+            documents.append(doc)
+        print()
+        
+    bd.close
+    return documents
+        
+        
+        
+def get_data_contamination(neighborhood):
     
-    return db
-
-def search_result(info):
-    db = connect_database()
-
-    documentos = db.contaminantes.find()
+    documents = get_all_database()
     
-    for doc in documentos:
-        print(doc)
-        return doc
+    # neighborhood = "Les Corts"
+    
+    for document in documents:
+        if document["Nom_districte"] == neighborhood :
+            print("existe") 
+    
 
-
-search_result(connect_databaseV2())
+get_all_database("Les Corts")

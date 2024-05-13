@@ -1,4 +1,4 @@
-import db
+import bd
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ def result():
     info["neighborhood"] = data["neighborhood"]
     info["date"] = data["date"]
     
-    is_created = db.search_result(info)
+    is_created = bd.search_result(info)
 
     if is_created:
         return render_template("result.html")
