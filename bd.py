@@ -34,33 +34,53 @@ def connect_databaseV2():  #Cambio de usuario si no estamos conectados
 
 connect_databaseV2()
 
-def get_all_database():
+# Obtiene todos los documentos en la coleccion
+
+# def get_all_database():
+#     bd = connect_databaseV2()
+    
+#     colecciones = ["CalidadAire" , "Contaminantes" , "Estaciones"]
+#     documents = []
+    
+#     for name_doc in colecciones:
+#         print(f"Estas en la Coleccion {name_doc}")
+#         coleccion = bd[name_doc]
+#         for doc in coleccion.find():
+#             documents.append(doc)
+#         print()
+        
+#     bd.close
+#     return documents
+
+def get_CalidadAire_Doc():
     bd = connect_databaseV2()
     
-    colecciones = ["CalidadAire" , "Contaminantes" , "Estaciones"]
+    coleccion = bd["CalidadAire"]
     documents = []
-    
-    for name_doc in colecciones:
-        print(f"Estas en la Coleccion {name_doc}")
-        coleccion = bd[name_doc]
-        for doc in coleccion.find():
-            documents.append(doc)
+    for doc in coleccion.find():
+        documents.append(doc)
         print()
-        
-    bd.close
     return documents
         
-        
-        
-def get_data_contamination(neighborhood):
+     
+def get_Estaciones_Doc():
+    bd = connect_databaseV2()
     
-    documents = get_all_database()
+    coleccion = bd["Estaciones"]
+    documents = []
+    for doc in coleccion.find():
+        documents.append(doc)
+        print()
+    return documents   
+        
+def get_data_neighborhood(neighborhood):
     
-    # neighborhood = "Les Corts"
+    documents = get_Estaciones_Doc()
     
     for document in documents:
-        if document["Nom_districte"] == neighborhood :
-            print("existe") 
-    
+        data_neighborhood = document.get("Nom_barri")
+        if data_neighborhood == neighborhood:
+            print("existe")
+            
 
-get_all_database("Les Corts")
+get_data_neighborhood("el Poblenou")
