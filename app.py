@@ -7,15 +7,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/result")
+@app.route("/result", methods=["POST"])
 def result():
-    info = {}
-
     data = request.form
-    info["neighborhood"] = data["neighborhood"]
-    info["date"] = data["date"]
-    
-    is_created = bd.search_result(info)
+    is_created = bd.search_results(data["neighborhood"], int(data["date"]))
 
     if is_created:
         return render_template("result.html")

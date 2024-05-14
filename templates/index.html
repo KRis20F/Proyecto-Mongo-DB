@@ -14,22 +14,31 @@
                 <h1 class="h1-BCN-header">Contaminacion en BCN</h1>
             </header>
             <main class="container-form main-bcn">
-                <h2>Bienvenido</h2>
-
-                <p>Ingrese el nombre del barrio y el dia y te mostrare que ha pasado con las contaminaciones</p>
-                <div class="container-form">
-
-                    <form action="" method="get">
-                       <ul>
-                        <li>
-                            <input type="text" name="neighborhood" id="neighborhood" placeholder="Barrio">
-                        </li>
-                        <li>
-                            <input type="date" placeholder="dia">
-                        </li>
-                       </ul>
-                    </form>
-                </div>
+                <section>
+                    <div class="wrapper">
+                        <div class="div-text-container">
+                            <h2>Bienvenido</h2>
+        
+                            <p>Ingrese el nombre del barrio y el dia y te mostrare que ha pasado con las contaminaciones</p>
+                        
+                        </div>
+                        <div class="container-form">
+                            
+                            <form action="/result" method="post">
+                                <ul class="form-contaminations-ul">
+                                <li class="contaminacion-li">
+                                    <input type="text" name="neighborhood" id="neighborhood" placeholder="Barrio">
+                                </li>
+                                <li class="contaminacion-li">
+                                    <input type="text" name="date" id="date" placeholder="dia">
+                                </li>
+                                </ul> 
+                                <input type="submit" value="Revisar">
+                            </form>
+                        
+                        </div>
+                    </div>
+                </section>
             </main>
         </div>
     </div>

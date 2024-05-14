@@ -18,6 +18,15 @@ a {text-decoration: inherit;}
 
 .wrapper {
     max-width: 1200px;
+    margin: 0 auto;
+}
+
+body {
+    background: rgb(0,121,255);
+    background: linear-gradient(166deg, rgba(0,121,255,1) 0%, rgba(47,226,243,1) 100%);
+    background-size: cover;
+    height: 100vh;
+    color: #fff;
 }
 
 .header-BCN {
@@ -30,4 +39,31 @@ a {text-decoration: inherit;}
     font-size: 2.5em;
     margin-left: 11%;
     font-family: var(--texto-bonito);
+}
+
+.div-text-container h2 {
+    font-size: 4em;
+    margin-block: .5em;
+}
+
+.div-text-container p {
+    font-size: 20px;
+    margin-block: 30px;
+}
+
+.form-contaminations-ul {
+    display: flex;
+}
+
+.contaminacion-li {
+    margin-right: 20px;
+}
+
+.contaminacion-li input{
+    padding: .5em;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: #000 solid 1px; 
+    color: #fff;
 }
