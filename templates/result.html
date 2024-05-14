@@ -8,6 +8,8 @@
 </head>
 <body>
     <div class="container-result">
+
+      <h1> El Barrio de {{ neighborhood }} tiene los siguientes datos</h1>
         <table>
             <thead>
                 <tr>
@@ -16,17 +18,14 @@
                   <th>Ciudad</th>
                 </tr>
               </thead>
-              <tbody>3
+              <tbody>
+                {% for i in is_created %}
                 <tr>
-                  <td>John</td>
-                  <td>30</td>
-                  <td>New York</td>
+                  <td>{{ i['desc'] }}</td>
+                  <td>{{ i['result'] }}</td>
+                  <td>{{ i['uni'] }}</td>
                 </tr>
-                <tr>
-                  <td>Jane</td>
-                  <td>25</td>
-                  <td>Los Angeles</td>
-                </tr>
+                {% endfor %}
               </tbody>
         </table>
     </div>

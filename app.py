@@ -10,11 +10,13 @@ def index():
 @app.route("/result", methods=["POST"])
 def result():
     data = request.form
-    is_created = bd.search_results(data["neighborhood"], int(data["date"]))
+    neighborhood = data["neighborhood"]
+    is_created = bd.search_results(neighborhood, int(data["date"]))
 
     if is_created:
-        return render_template("result.html")
+        return render_template("result.html", neighborhood=neighborhood, is_created=is_created)
     else:
         return render_template("index.html")
+
 
 app.run(host='localhost', port=5069, debug=True)

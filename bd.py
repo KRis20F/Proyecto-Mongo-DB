@@ -58,22 +58,3 @@ def get_date_id():
     client = connect_database()
     db = client["ContaminacionBCN"]
     
-
-# Ejemplo de uso:
-# neighborhood = "Sants"
-# date = 3
-# search_results(neighborhood, date)
-
-
-# def get_data_neighborhood(neighborhood):
-    
-#     client = connect_database()
-    
-#     db = client["ContaminacionBCN"]
-    
-#     db = db.Estaciones.find_one({"Nom_barri": neighborhood})
-    
-#     for document in db:
-#         data_neighborhood = document.get("Nom_barri")
-#         return data_neighborhood
-            
