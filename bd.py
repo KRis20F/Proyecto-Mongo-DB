@@ -6,20 +6,19 @@ def connect_database():
     client = MongoClient(uri, server_api=ServerApi('1'))
     try:
         client.admin.command('ping')
-        print("Pinged your deployment. You successfully connected to MongoDB!")
-        return client
-    except Exception as e:
-        print(e)
-        return None
+        return client["ContaminacionBCN"], client
+    
+    except Exception as error:
+        print(error)
+        return None, None
 
 def search_results(neighborhood, date):
     search_result = []
-    estacion_id = get_neighborhood_id(neighborhood)
+    db, client = connect_database()
+
+    estacion_id = get_neighborhood_id(db, neighborhood)
 
     if estacion_id:
-        client = connect_database()
-        db = client["ContaminacionBCN"]
-        
         info_calidad = db.CalidadAire.find({"ESTACIO": estacion_id, "DIA": date})
 
         for result in info_calidad:
@@ -40,21 +39,14 @@ def search_results(neighborhood, date):
 
         return search_result
     else:
+        client.close()
         return None
 
-def get_neighborhood_id(neighborhood):
-    client = connect_database()
-    db = client["ContaminacionBCN"]
+def get_neighborhood_id(db, neighborhood):
     id_document = db.Estaciones.find_one({"Nom_barri": neighborhood})
-    client.close()
 
     if id_document:
         return id_document.get("Estacio")
     else:
         return None
-    
-    
-def get_date_id():
-    client = connect_database()
-    db = client["ContaminacionBCN"]
     

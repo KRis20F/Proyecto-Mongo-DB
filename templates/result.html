@@ -13,11 +13,14 @@
         <h1 class="h1-BCN-header">Contaminacion en BCN</h1>
       </header>
 
-      <h1> El Barrio de {{ neighborhood }} tiene los siguientes datos</h1>
+      <div class="table-container">
+        <div class="div-text-container">
+          <h1>El Barrio de {{ neighborhood }} tiene los siguientes datos:</h1>
+        </div>
         <table>
             <thead>
                 <tr>
-                  <th>Descripcion</th>
+                  <th>Contaminante</th>
                   <th>Resultado</th>
                   <th>Unidad</th>
                 </tr>
@@ -25,13 +28,15 @@
               <tbody>
                 {% for i in is_created %}
                 <tr>
-                  <td>{{ i['desc'] }}</td>
-                  <td>{{ i['result'] }}</td>
-                  <td>{{ i['uni'] }}</td>
+                  <td class="padding-tr">{{ i['desc'] }}</td>
+                  <td class="padding-tr">{{ i['result'] }}</td>
+                  <td class="padding-tr">{{ i['uni'] }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
         </table>
+      </div>
+      <a href="{{url_for('index')}}">Volver al menú principal</a>
     </div>
 
 </body>

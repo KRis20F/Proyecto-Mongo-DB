@@ -14,9 +14,9 @@ def result():
     is_created = bd.search_results(neighborhood, int(data["date"]))
 
     if is_created:
-        return render_template("result.html", neighborhood=neighborhood, is_created=is_created)
+        return render_template("result.html", neighborhood = neighborhood, is_created = is_created)
     else:
-        return render_template("index.html")
+        return render_template("index.html", error_message = "No se encontraron resultados, intenta con otros datos")
 
 
 app.run(host='localhost', port=5069, debug=True)
