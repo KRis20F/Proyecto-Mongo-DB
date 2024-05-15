@@ -15,7 +15,7 @@
 
       <div class="table-container">
         <div class="div-text-container">
-          <h1>El Barrio de {{ neighborhood }} tiene los siguientes datos:</h1>
+          <h1>Resultados en {{ parameters["neighborhood"] }}, dia {{ parameters["date"] }} de marzo:</h1>
         </div>
         <table>
             <thead>
@@ -26,7 +26,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for i in is_created %}
+                {% for i in research %}
                 <tr>
                   <td class="padding-tr">{{ i['desc'] }}</td>
                   <td class="padding-tr">{{ i['result'] }}</td>

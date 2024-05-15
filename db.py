@@ -49,4 +49,18 @@ def get_neighborhood_id(db, neighborhood):
         return id_document.get("Estacio")
     else:
         return None
-    
+
+def get_neighborhood_list():
+    neighborhood_list = []
+
+    db, client = connect_database()
+
+    neighborhoods = db.Estaciones.distinct("Nom_barri")
+
+    for neighborhood in neighborhoods:
+        neighborhood_list.append(neighborhood)
+        print(neighborhood)
+
+    client.close()
+
+    return neighborhood_list
