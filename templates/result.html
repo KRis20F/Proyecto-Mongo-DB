@@ -35,9 +35,13 @@
                 {% endfor %}
               </tbody>
         </table>
+        
+        <div class="container-estadisct">
+          <h2>Gráfico de Estadísticas</h2>
+          <img src="{{ url_for('static', filename='img/' ~ image_path) }}" alt="Gráfico de Estadísticas"/>
+        </div>
         <a href="/">Volver al menu</a>
       </div>
-      
     </div>
 
 </body>

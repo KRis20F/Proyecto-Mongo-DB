@@ -18,7 +18,9 @@ def result():
     is_created = db.search_results(data["neighborhood"], int(data["date"]))
 
     if is_created:
-        return render_template("result.html", parameters = parameters, research = is_created)
+        stats = db.calcular_estadisticas(is_created)
+        image_path = db.generar_grafico(stats, data["neighborhood"])
+        return render_template("result.html", parameters = parameters, research = is_created, stats = stats, image_path = image_path)
     else:
         list = db.get_neighborhood_list()
         error_message = "No se encontraron resultados, intenta con otros datos"

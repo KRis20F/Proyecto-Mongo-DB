@@ -12,7 +12,7 @@
 html{
     background: linear-gradient(166deg, rgba(0,121,255,1) 0%, rgba(47,226,243,1) 100%);
     color: #fff;
-    height: 180vh;
+    height: 260vh;
 }
 
 img {
@@ -115,6 +115,7 @@ a {
     background: rgb(10, 48, 163);
     padding: 0.3em 1em;
     font-size: 1em;
+    margin-block: 60px;
     text-shadow: 3px -1px 7px black;
     border-bottom: none;
     cursor: pointer;
@@ -175,4 +176,19 @@ select {
 option {
     background-color: rgb(0,121,255);
     color: white;
+}
+
+
+/* estilo para las estadisticas */
+
+.container-estadisct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-estadisct h2 {
+    font-size: 1.3em;
+    margin-block: 19px;
 }
